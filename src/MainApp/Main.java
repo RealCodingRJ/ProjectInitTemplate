@@ -1,37 +1,16 @@
 package MainApp;
 
-import java.io.File;
-import java.util.ArrayList;
+import BackendFiles.Express;
+import BasicProject.BasicProject;
+import NextJSProject.NextJS;
+import ReactJS.ReactJSProject;
+import SpringBootInit.SpringBoot;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void CreateLibraryCommand(String cmd) throws Exception{
-        Runtime.getRuntime().exec(cmd);
-    }
-
-    public static void CreateHTML() throws Exception{
-
-        File fileHTML = new File("index.html");
-        fileHTML.createNewFile();
-    }
-
-    public static void CreateCSS() throws Exception{
-
-        File fileCSS = new File("App.css");
-        fileCSS.createNewFile();
-    }
-
-    public static void CreateJS() throws Exception{
-
-        File fileJS = new File("App.js");
-        fileJS.createNewFile();
-    }
-
 
     public static void main(String[] args) throws Exception {
-
-        int length = 4;
 
         Scanner scan = new Scanner(System.in);
 
@@ -40,59 +19,29 @@ public class Main {
 
         switch (command) {
 
-            case "/React" -> {
-                CreateLibraryCommand("npx nano-react-app myapp");
-                System.out.println("Would You Like to Run App");
-                String option = scan.nextLine();
-                if (option == "y") {
+            case "/React":
+                ReactJSProject.CreateProject();
+                break;
 
-                    CreateLibraryCommand("cd myapp");
-                    CreateLibraryCommand("npm install");
-                    CreateLibraryCommand("npm run dev");
-                }
-            }
 
-            case "/Next" -> {
-               CreateLibraryCommand("npx create-next-app myapp");
-                System.out.println("Would You Like to Run App");
-                String option = scan.nextLine();
-                if (option == "y") {
+            case "/Next":
+                NextJS.CreateProject();
+                break;
 
-                    CreateLibraryCommand("cd myapp");
-                    CreateLibraryCommand("npm install");
-                    CreateLibraryCommand("npm run dev");
-                }
+            case "/Spring":
 
-            }
+                SpringBoot.Project();
+                break;
 
-            case "/Spring" -> {
-                CreateLibraryCommand("spring boot new app");
+            case "/Basic":
 
-                System.out.println("Would You Like to Run App");
-                String option = scan.nextLine();
-                if (option == "y") {
+                BasicProject.StartProject();
+                break;
 
-                    CreateLibraryCommand("cd app");
-                    CreateLibraryCommand("mvn spring:run");
-                }
 
-            }
-
-            case "/Basic" -> {
-
-                try {
-
-                    CreateHTML();
-                    CreateCSS();
-                    CreateJS();
-
-                } catch(Exception ce) {
-
-                    System.out.printf("%s", ce.getMessage());
-                }
-
-            }
-
+            case "Express":
+                Express.GetProjectCode();
+                break;
 
         }
 
